@@ -685,12 +685,10 @@ class ViewController: NSViewController {
 		let basefilename = removeExtension(filename: filename)
 
 		switch displayMode {
-		case LOADEDDISPLAY:
+		case LOADEDDISPLAY, IMPORTEDDISPLAY:
 			filename = basefilename+"_hexdump"
 		case UNPACKEDDISPLAY:
 			filename = basefilename+"_unpacked_hexdump"
-		case IMPORTEDDISPLAY:
-			filename = basefilename+"_imported_hexdump"
 		case PACKEDDISPLAY:
 			filename = basefilename+"_packed_hexdump"
 		default:
@@ -815,6 +813,7 @@ class ViewController: NSViewController {
 			displayMode = IMPORTEDDISPLAY
 			updateUI()
 			updateBitmapDisplay()
+			print("Import success")
 		}
 	}
 }

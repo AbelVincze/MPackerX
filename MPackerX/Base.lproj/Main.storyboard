@@ -386,13 +386,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="394" height="448"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView ambiguous="YES" drawsBackground="NO" importsGraphics="NO" richText="NO" horizontallyResizable="YES" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" allowsUndo="YES" textCompletion="NO" id="TQh-AZ-1a3">
-                                            <rect key="frame" x="0.0" y="0.0" width="800" height="440"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                        <textView ambiguous="YES" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" allowsUndo="YES" textCompletion="NO" id="TQh-AZ-1a3">
+                                            <rect key="frame" x="0.0" y="0.0" width="378" height="440"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="800" height="440"/>
-                                            <size key="maxSize" width="10000000" height="10000000"/>
+                                            <size key="minSize" width="378" height="440"/>
+                                            <size key="maxSize" width="800" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment>
                                                     <string key="content">01 00 10 F4 32 FF E7 99 C3 81 9F F9 CF 80 C1 F3
@@ -419,6 +419,7 @@
                                             </allowedInputSourceLocales>
                                         </textView>
                                     </subviews>
+                                    <edgeInsets key="contentInsets" left="8" right="8" top="4" bottom="4"/>
                                 </clipView>
                                 <edgeInsets key="contentInsets" left="8" right="8" top="4" bottom="4"/>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="NO" id="3NL-Io-ZfQ">
@@ -610,7 +611,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Unpack" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JHx-2z-CpY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="unpackButtonClicked:" target="XfG-lQ-9wD" id="eK8-Fn-xAA"/>
@@ -621,7 +622,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DyT-Z3-UiZ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="openButtonClicked:" target="XfG-lQ-9wD" id="eUv-iT-bqG"/>
@@ -632,7 +633,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Pack" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gR2-7v-Odj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="packButtonClicked:" target="XfG-lQ-9wD" id="JsY-3H-nqj"/>
@@ -649,7 +650,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="256" height="2048"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <subviews>
-                                                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCL-pL-7QI" customClass="BitmapImageView" customModule="Bitmaptool" customModuleProvider="target">
+                                                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCL-pL-7QI" customClass="BitmapImageView" customModule="MPackerX" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="256" height="2048"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" id="lnK-4t-OTC"/>

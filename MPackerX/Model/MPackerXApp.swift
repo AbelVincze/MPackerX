@@ -212,7 +212,7 @@ class MPackerXApp {
 		odatatype = IMPORTEDDATA
 		importedInfo = "Imported data\n\( odata.count ) bytes binary data"
 		
-		lastFileName = "" 	// store filename for later use
+		lastFileName = "import" 	// store filename for later use
 		return 0
     }
 	func getHexValue( chr:UInt8 )->Int {
@@ -235,9 +235,9 @@ class MPackerXApp {
 		let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
 		let timeInterval = Double(nanoTime) / 1000000
 
-		var P = Double( pdata.count )
-		var O = Double( odata.count )
-		var PC = 100*P/O
+		let P = Double( pdata.count )
+		let O = Double( odata.count )
+		let PC = 100*P/O
 
 		packedInfo = "Packed to \( pdata.count ) bytes in \( String(format:"%.3f", timeInterval ) ) ms\nfrom \( odata.count) bytes original (\( String(format:"%.2f", PC ) )%)"
 		
@@ -269,7 +269,11 @@ class MPackerXApp {
 				msettings.MAXC = mpackerx.lastSettings.MAXC
 			}
 
-			unpackedInfo = "Unpacked to \( odata.count ) bytes in \( String(format:"%.3f", timeInterval ) ) ms\nfrom \( origlen ) bytes packed original"
+			let P = Double( origlen )
+			let O = Double( odata.count )
+			let PC = 100*P/O
+			
+			unpackedInfo = "Unpacked to \( odata.count ) bytes in \( String(format:"%.3f", timeInterval ) ) ms\nfrom \( origlen ) bytes packed original (\( String(format:"%.2f", PC ) )%)"
 
 
 			return 0
