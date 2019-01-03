@@ -224,6 +224,15 @@ class MPackerXApp {
 		}
 	}
 	
+	func setData( data:[UInt8], bw:Int ) {
+		odata = data
+		msettings.BW = bw
+		setH()
+		odatatype = LOADEDDATA
+		let filename = (lastFileName as NSString).lastPathComponent
+		loadedInfo = "Reordered \( odata.count ) bytes binary file\n\( filename )"
+	}
+	
     func packData() {
         // pack odata -> result in pdata
 		let start = DispatchTime.now()

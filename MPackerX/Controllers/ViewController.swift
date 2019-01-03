@@ -77,9 +77,12 @@ class ViewController: NSViewController {
     // ------------------------------------------------------------------------------------------------ VARIABLES
     let mpackerxapp = MPackerXApp()
     var appdelegate:AppDelegate? = nil
+	
 	var exportWindowController:NSWindowController!
 	var exportViewController:ExportViewController!
-
+	var reorderWindowController:NSWindowController!
+	var reorderViewController:ReorderViewController!
+	
     // ------------------------------------------------------------------------------------------------ OVERRIDES
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +120,7 @@ class ViewController: NSViewController {
         }
     }
     // ------------------------------------------------------------------------------------------------ @IBOutlets MENU
-    @IBOutlet weak var newMenuItem: NSMenuItem!
+    //@IBOutlet weak var newMenuItem: NSMenuItem!
 
     
     // ------------------------------------------------------------------------------------------------ @IBActions MENU
@@ -147,7 +150,7 @@ class ViewController: NSViewController {
         updateBitmapDisplay()
     }
     @IBAction func dataReorderMenuItemClicked(_ sender: Any ) {
-        print("dataReorderMenuItemClicked")
+        openReorderWindow()
     }
     @IBAction func dataCropMenuItemClicked(_ sender: Any ) {
         print("dataCropMenuItemClicked")
@@ -249,7 +252,7 @@ class ViewController: NSViewController {
 	@IBAction func BWEntered(_ sender: Any) {
 		let ov = mpackerxapp.msettings.BW
 		var nv = BWTextField.integerValue
-		if nv>32 { nv=32; BWTextField.integerValue=nv }
+		if nv>256 { nv=256; BWTextField.integerValue=nv }
 		if nv<1  { nv=1;  BWTextField.integerValue=nv }
 		//setH()
 		BWStepper.integerValue = nv
@@ -310,7 +313,7 @@ class ViewController: NSViewController {
 
 	func initBWStepper() {
 		BWStepper.minValue = 1
-		BWStepper.maxValue = 32
+		BWStepper.maxValue = 256
 		BWStepper.integerValue = mpackerxapp.msettings.BW
 		
 	}
@@ -340,7 +343,9 @@ class ViewController: NSViewController {
 
     var workingInBackground:Bool = false
     var displayMode:Int = 0
+	
 	var exportWindowOpened:Bool = false
+	var reorderWindowOpened:Bool = false
     //var BW:Int = 16
     
     func updateUI() {
@@ -362,21 +367,33 @@ class ViewController: NSViewController {
         let isNew = !mpackerxapp.haveodata
         let packed = displayMode == PACKEDDISPLAY
 		let canUnpack = !isNew && !mpackerxapp.odataisnotpacked && !packed
+		let mainf = !reorderWindowOpened
 		
-        appdelegate?.newMenuItem.isEnabled      = !isNew
-        appdelegate?.openMenuItem.isEnabled     = true
-		appdelegate?.saveAsMenuItem.isEnabled   = !isNew
+        appdelegate?.newMenuItem.isEnabled      = !isNew && mainf
+        appdelegate?.openMenuItem.isEnabled     = true && mainf
+		appdelegate?.saveAsMenuItem.isEnabled   = !isNew && mainf
 		appdelegate?.importExportMenuItem.isEnabled   = true	//!exportWindowOpened
 		appdelegate?.selectAllMenuItem.isEnabled = exportWindowOpened
 		
-        appdelegate?.packMenuItem.isEnabled     = !isNew
-        packButton.isEnabled                    = !isNew
-        appdelegate?.unpackMenuItem.isEnabled   = canUnpack
-        unpackButton.isEnabled                  = canUnpack
+        appdelegate?.packMenuItem.isEnabled     = !isNew && mainf
+        packButton.isEnabled                    = !isNew && mainf
+        appdelegate?.unpackMenuItem.isEnabled   = canUnpack && mainf
+        unpackButton.isEnabled                  = canUnpack && mainf
 
-        appdelegate?.invertMenuItem.isEnabled   = !isNew && !packed
-        appdelegate?.reorderMenuItem.isEnabled  = !isNew && !packed
-        appdelegate?.cropMenuItem.isEnabled     = !isNew && !packed
+        appdelegate?.invertMenuItem.isEnabled   = !isNew && !packed && mainf
+        appdelegate?.reorderMenuItem.isEnabled  = !isNew && !packed && mainf
+        appdelegate?.cropMenuItem.isEnabled     = !isNew && !packed && mainf
+		
+		openButton.isEnabled					= mainf
+		BWTextField.isEnabled					= mainf
+		BWStepper.isEnabled						= mainf
+		MAXDTextField.isEnabled					= mainf
+		MAXDStepper.isEnabled					= mainf
+		MAXCTextField.isEnabled					= mainf
+		MAXCStepper.isEnabled					= mainf
+		LUTCheckbox.isEnabled					= mainf
+		NEGCheckbox.isEnabled					= mainf
+		reorderCheckbox.isEnabled				= mainf
         
         // Update visible values with the stored settings
         BWTextField.stringValue					= String( mpackerxapp.msettings.BW )
@@ -433,14 +450,20 @@ class ViewController: NSViewController {
             
             var i:Int = 0
             var bin:Int = 0
+			let bw = mpackerxapp.msettings.BW
             while bin<length && i<65536 {
                 //memory[i] = UInt8.random(in: 0 ..< 255)
                 memory[i] = mpackerxapp.odata[bin]
                 i += 1
                 bin += 1
-                if( bin%mpackerxapp.msettings.BW==0 ) {
+                /*if( bin%mpackerxapp.msettings.BW==0 ) {
                     i += (32-mpackerxapp.msettings.BW)
-                }
+                }*/
+				if bw<=32 {
+					if bin%bw==0 { i += (32-bw) }
+				} else {
+					if i%32==0 { bin += (bw-32) }
+				}
             }
         case PACKEDDISPLAY:
             for i:Int in 0..<mpackerxapp.pdata.count {
@@ -457,6 +480,40 @@ class ViewController: NSViewController {
         if exportWindowOpened { refreshExportWindowContent() }
         
     }
+	func applyReorderedData( data:[UInt8], bw:Int ) {
+		mpackerxapp.setData( data: data, bw: bw)
+		displayMode = LOADEDDISPLAY
+	}
+	func previewBitmapDisplay( data:[UInt8], bw:Int ) {
+		print("updateBitmapDisplay")
+		
+		let memory = UnsafeMutablePointer<UInt8>.allocate(capacity: 65536)
+		let pixels = UnsafePointer<UInt8>.init( memory )
+		
+		for i:Int in 0..<65536 { memory[i] = 0x55 }
+		
+		let length = data.count
+		
+		var i:Int = 0
+		var bin:Int = 0
+		while bin<length && i<65536 {
+			//memory[i] = UInt8.random(in: 0 ..< 255)
+			memory[i] = data[bin]
+			i += 1
+			bin += 1
+			if bw<=32 {
+				if bin%bw==0 { i += (32-bw) }
+			} else {
+				if i%32==0 { bin += (bw-32) }
+			}
+		}
+		
+		let size:NSSize = NSSize( width: 256, height: 2048 )
+		bitmapView.image = imageFromPixels(size: size, pixels: pixels , width: Int(256), height: Int(2048) )
+		
+		//if exportWindowOpened { refreshExportWindowContent() }
+		
+	}
 	func discardPackedDisplay() {
 		if displayMode != PACKEDDISPLAY { return }
 		
@@ -526,6 +583,9 @@ class ViewController: NSViewController {
 					}
 				}
                 updateBitmapDisplay()
+				
+				// Add successfully opened file to the recent files menu
+				NSDocumentController.shared.noteNewRecentDocumentURL(URL(fileURLWithPath: file))
             }
             updateUI()
             
@@ -660,6 +720,33 @@ class ViewController: NSViewController {
 			updateBitmapDisplay()
 		}
 		updateUI()
+	}
+	
+	func openReorderWindow() {
+		if reorderWindowOpened { return }
+
+		let storyboard = NSStoryboard(name: "Main", bundle: nil)
+		reorderWindowController = storyboard.instantiateController(withIdentifier: "ReorderWindowController") as? NSWindowController
+		
+		if reorderWindowController!.window != nil {
+			
+			reorderWindowOpened = true
+			
+			reorderViewController = reorderWindowController.contentViewController as? ReorderViewController
+			reorderWindowController.showWindow(self)
+			reorderViewController.mainViewController = self
+			
+			//reorderWindowController.windowFrameAutosaveName = NSWindow.FrameAutosaveName( "MPackerXReorderDataWindow")
+			//reorderWindowController.
+			
+			reorderViewController.initReorder(data: mpackerxapp.odata,
+											  bw: mpackerxapp.msettings.BW,
+											  h: mpackerxapp.msettings.H,
+											  len: mpackerxapp.odata.count)
+			
+			updateUI()
+		}
+
 	}
 	
 	func openExportWindow() {

@@ -186,14 +186,12 @@
                                                 <action selector="dataInvertMenuItemClicked:" target="Ady-hI-5gd" id="mWs-by-OGo"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Reorder..." enabled="NO" id="c9y-bJ-1hi">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Reorder..." enabled="NO" keyEquivalent="R" id="c9y-bJ-1hi">
                                             <connections>
                                                 <action selector="dataReorderMenuItemClicked:" target="Ady-hI-5gd" id="1eL-VX-g0e"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Crop..." enabled="NO" id="exY-eU-PGw">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Crop..." enabled="NO" keyEquivalent="C" id="exY-eU-PGw">
                                             <connections>
                                                 <action selector="dataCropMenuItemClicked:" target="Ady-hI-5gd" id="Soa-g1-8SN"/>
                                             </connections>
@@ -325,6 +323,268 @@
             <point key="canvasLocation" x="165" y="-22"/>
         </scene>
         <!--Window Controller-->
+        <scene sceneID="fXf-Yz-mbz">
+            <objects>
+                <windowController storyboardIdentifier="ReorderWindowController" showSeguePresentationStyle="single" id="feL-e2-4Cg" sceneMemberID="viewController">
+                    <window key="window" title="Reorder Data" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" visibleAtLaunch="NO" appearanceType="aqua" frameAutosaveName="MPackerXReorderDataWindow" animationBehavior="default" titlebarAppearsTransparent="YES" id="zz4-SP-ePd" customClass="ExportPanel" customModule="MPackerX" customModuleProvider="target">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" documentModal="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="256" height="300"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="feL-e2-4Cg" id="PYu-IE-7Eu"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="eiG-Yl-B34" kind="relationship" relationship="window.shadowedContentViewController" id="Wki-bm-lF1"/>
+                    </connections>
+                </windowController>
+                <customObject id="rza-0x-FWL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-280" y="262"/>
+        </scene>
+        <!--Reorder View Controller-->
+        <scene sceneID="j19-Xg-Zgu">
+            <objects>
+                <viewController storyboardIdentifier="ReorderViewController" id="eiG-Yl-B34" customClass="ReorderViewController" customModule="MPackerX" sceneMemberID="viewController">
+                    <view key="view" id="gWO-Ea-bEA">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="279"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1gC-Lw-XfX">
+                                <rect key="frame" x="175" y="229" width="15" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="1" maxValue="1024" doubleValue="2" id="VhC-NE-LtE"/>
+                                <connections>
+                                    <action selector="BBWStepperClicked:" target="eiG-Yl-B34" id="ocL-SV-teX"/>
+                                </connections>
+                            </stepper>
+                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nzw-z4-DqC">
+                                <rect key="frame" x="175" y="209" width="15" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="1" maxValue="65536" doubleValue="16" id="l0y-Xw-Bth"/>
+                                <connections>
+                                    <action selector="BHStepperClicked:" target="eiG-Yl-B34" id="cqn-mu-csu"/>
+                                </connections>
+                            </stepper>
+                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ccs-t5-yZ9">
+                                <rect key="frame" x="175" y="130" width="15" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="1" maxValue="1024" doubleValue="16" id="4nm-ko-WwF"/>
+                                <connections>
+                                    <action selector="HTStepperClicked:" target="eiG-Yl-B34" id="9oA-Ya-EVn"/>
+                                </connections>
+                            </stepper>
+                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-H3-50k">
+                                <rect key="frame" x="175" y="109" width="15" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="1" maxValue="65536" doubleValue="16" id="deP-NT-MIf"/>
+                                <connections>
+                                    <action selector="VTStepperCLicked:" target="eiG-Yl-B34" id="C1E-sS-EiQ"/>
+                                </connections>
+                            </stepper>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cRg-LL-m0v">
+                                <rect key="frame" x="6" y="0.0" width="70" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EJy-Wv-de3">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system" size="12"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelButtonClicked:" target="eiG-Yl-B34" id="ISc-p0-pVJ"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ok-TP-fax">
+                                <rect key="frame" x="124" y="0.0" width="70" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dce-dg-3xw">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system" size="12"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="applyButtonClicked:" target="eiG-Yl-B34" id="WhZ-eN-TWV"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1k-Cq-kFa">
+                                <rect key="frame" x="130" y="230" width="46" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="2" drawsBackground="YES" usesSingleLineMode="YES" id="UAJ-G4-HTZ">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="BBWEntered:" target="eiG-Yl-B34" id="ayp-5H-b8s"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yFf-CC-DX8">
+                                <rect key="frame" x="130" y="210" width="46" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="16" drawsBackground="YES" usesSingleLineMode="YES" id="HuP-O2-TAo">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="BHEntered:" target="eiG-Yl-B34" id="HWc-Ph-h0z"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xyv-3U-iZm">
+                                <rect key="frame" x="130" y="131" width="46" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="16" drawsBackground="YES" usesSingleLineMode="YES" id="YlC-jY-wbM">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="HTEntered:" target="eiG-Yl-B34" id="TGy-dr-AAJ"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gye-Mz-fKd">
+                                <rect key="frame" x="130" y="111" width="46" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="16" drawsBackground="YES" usesSingleLineMode="YES" id="FQk-de-Q39">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="VTEntered:" target="eiG-Yl-B34" id="WkR-Jc-o94"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CmW-tA-1UZ">
+                                <rect key="frame" x="65" y="233" width="62" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Row Bytes" id="vV9-wm-Gcs">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mCw-nq-9EG">
+                                <rect key="frame" x="10" y="256" width="148" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Source Bitmap's Tile size:" id="KdT-6w-jkT">
+                                    <font key="font" metaFont="systemBold" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5QJ-4l-6de">
+                                <rect key="frame" x="10" y="157" width="112" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Target Bitmap size:" id="oxi-FZ-O8C">
+                                    <font key="font" metaFont="systemBold" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hBC-6Q-6Fa">
+                                <rect key="frame" x="65" y="213" width="62" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Height" id="mpp-zn-uJK">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h3i-Aw-3K2">
+                                <rect key="frame" x="16" y="134" width="111" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Max Horizontal Tiles" id="tGO-na-LpR">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oY1-s4-ROc">
+                                <rect key="frame" x="30" y="114" width="97" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Max Vertical Tiles" id="dTQ-ny-GTe">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BZA-n0-ILR">
+                                <rect key="frame" x="124" y="38" width="64" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="check" title="Preview" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iRf-vT-Qas">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="11"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="reorderPreviewClicked:" target="eiG-Yl-B34" id="sbu-ul-F89"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yAO-si-3f6">
+                                <rect key="frame" x="15" y="190" width="95" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Tile Arrangement" id="NyS-fg-P1N">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ceY-Ze-zxN">
+                                <rect key="frame" x="15" y="91" width="95" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Tile Arrangement" id="f23-Le-lbq">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLZ-YM-7Wp">
+                                <rect key="frame" x="113" y="185" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="kk0-v2-afP">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <segments>
+                                        <segment label="HV" toolTip="Tile horizontally, then vertically"/>
+                                        <segment label="VH" toolTip="Tile vertically, then horizontally" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="SASegmentClicked:" target="0L8-Ms-i3i" id="Hab-8c-yE2"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OHA-pY-lps">
+                                <rect key="frame" x="113" y="86" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Dq4-ZE-jd3">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <segments>
+                                        <segment label="HV" toolTip="Tile horizontally, then vertically"/>
+                                        <segment label="VH" toolTip="Tile vertically, then horizontally" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="TASegmentsClicked:" target="0L8-Ms-i3i" id="qdY-EE-4Yo"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="BBWStepper" destination="1gC-Lw-XfX" id="nig-Vm-fYd"/>
+                        <outlet property="BBWTextField" destination="b1k-Cq-kFa" id="p7o-0l-Hfe"/>
+                        <outlet property="BHStepper" destination="Nzw-z4-DqC" id="Gzy-Yy-Ipm"/>
+                        <outlet property="BHTextField" destination="yFf-CC-DX8" id="Vl8-9C-Pqj"/>
+                        <outlet property="HTStepper" destination="Ccs-t5-yZ9" id="Qae-Y0-uld"/>
+                        <outlet property="HTTextField" destination="Xyv-3U-iZm" id="Apd-fN-Dqc"/>
+                        <outlet property="ReorderPreviewCheckbox" destination="BZA-n0-ILR" id="lnj-oO-Oiq"/>
+                        <outlet property="SASegments" destination="SLZ-YM-7Wp" id="VuY-Pr-2hH"/>
+                        <outlet property="TASegments" destination="OHA-pY-lps" id="U5S-Hh-kNm"/>
+                        <outlet property="VTStepper" destination="7WH-H3-50k" id="dfP-fP-L8y"/>
+                        <outlet property="VTTextField" destination="gye-Mz-fKd" id="hSo-tE-vaY"/>
+                    </connections>
+                </viewController>
+                <customObject id="0L8-Ms-i3i" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-225" y="860.5"/>
+        </scene>
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
@@ -352,7 +612,7 @@
         <scene sceneID="A8P-xs-8oZ">
             <objects>
                 <windowController storyboardIdentifier="ExportWindowController" showSeguePresentationStyle="single" id="P3P-ed-w2j" sceneMemberID="viewController">
-                    <window key="window" title="Import/Export Hexdump" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="exportHexdumpWindow" animationBehavior="default" titlebarAppearsTransparent="YES" id="zg6-Mo-nLi" customClass="ExportPanel" customModule="MPackerX" customModuleProvider="target">
+                    <window key="window" title="Import/Export Hexdump" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="MPackerXExportHexdumpWindow" animationBehavior="default" titlebarAppearsTransparent="YES" id="zg6-Mo-nLi" customClass="ExportPanel" customModule="MPackerX" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="133" y="240" width="400" height="480"/>
@@ -601,7 +861,7 @@
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ooY-f7-hbM">
                                 <rect key="frame" x="231" y="359" width="15" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="1" maxValue="32" doubleValue="16" id="zUK-oa-orE"/>
+                                <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="1" maxValue="256" doubleValue="16" id="zUK-oa-orE"/>
                                 <connections>
                                     <action selector="BWStepperClicked:" target="XfG-lQ-9wD" id="gEF-6b-uVX"/>
                                 </connections>

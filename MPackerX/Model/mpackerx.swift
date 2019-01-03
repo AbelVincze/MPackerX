@@ -589,7 +589,7 @@ class MPackerX {
         // output "header":
         pdata[ bout ] =  UInt8( (H&0xFF00)>>8 )        // Bitmap height (16 bit big endian)
         pdata[ bout+1 ] =  UInt8( H&0xFF )
-        pdata[ bout+2 ] =  UInt8( settings.BW )                    // Bitmap bytewidth (width/8)
+        pdata[ bout+2 ] =  UInt8( settings.BW&0xFF )                    // Bitmap bytewidth (width/8)
         bout += 3
         
         /*if( !b_mode ) {
@@ -718,8 +718,10 @@ class MPackerX {
         
         var H:Int = Int(pdata[ bin ])*256;   // 1. byte
         H += Int(pdata[ bin+1 ]);            // 2. byte
+		if H==0 { H=65536 }
         var BW:Int = Int(pdata[ bin+2 ]);    // 3. byte
-        
+		if BW==0 { BW=256 }
+		
         bin += 3
         
         expsize = BW*H;

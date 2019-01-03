@@ -63,7 +63,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // this func is called from the ViewController, now appdelegate have access to it!
         viewcontroller = vc
     }
-    // Function needed to open files from the finder
+    // Function needed to open files from the finder and the recent menu
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         viewcontroller?.openFileFromFinder( file: filename )
         return true

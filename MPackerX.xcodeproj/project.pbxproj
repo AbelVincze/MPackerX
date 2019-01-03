@@ -14,6 +14,7 @@
 		056869E521D5B0AD00F0CA1D /* MPackerXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056869E421D5B0AD00F0CA1D /* MPackerXApp.swift */; };
 		057DC7CC21D6F32F00D2F9F0 /* mpackerx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DC7CB21D6F32F00D2F9F0 /* mpackerx.swift */; };
 		057DC7CF21D80A1F00D2F9F0 /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DC7CE21D80A1F00D2F9F0 /* ExportViewController.swift */; };
+		057DC7D121DABF0500D2F9F0 /* ReorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DC7D021DABF0500D2F9F0 /* ReorderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		057DC7CB21D6F32F00D2F9F0 /* mpackerx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mpackerx.swift; sourceTree = "<group>"; usesTabs = 1; };
 		057DC7CD21D6F39400D2F9F0 /* MPackerX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MPackerX.entitlements; sourceTree = "<group>"; };
 		057DC7CE21D80A1F00D2F9F0 /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
+		057DC7D021DABF0500D2F9F0 /* ReorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				0552417C21D568B800B41666 /* ViewController.swift */,
+				057DC7D021DABF0500D2F9F0 /* ReorderViewController.swift */,
 				057DC7CE21D80A1F00D2F9F0 /* ExportViewController.swift */,
 			);
 			path = Controllers;
@@ -194,6 +197,7 @@
 			files = (
 				057DC7CC21D6F32F00D2F9F0 /* mpackerx.swift in Sources */,
 				0552417D21D568B800B41666 /* ViewController.swift in Sources */,
+				057DC7D121DABF0500D2F9F0 /* ReorderViewController.swift in Sources */,
 				056869E521D5B0AD00F0CA1D /* MPackerXApp.swift in Sources */,
 				0552417B21D568B800B41666 /* AppDelegate.swift in Sources */,
 				057DC7CF21D80A1F00D2F9F0 /* ExportViewController.swift in Sources */,
