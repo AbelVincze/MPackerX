@@ -586,10 +586,10 @@ class ViewController: NSViewController {
 				
 				// Add successfully opened file to the recent files menu
 				NSDocumentController.shared.noteNewRecentDocumentURL(URL(fileURLWithPath: file))
-            }
-            updateUI()
-            
-            return 0
+			}
+			updateUI()
+
+			return 0
         }
         return -1
     }
