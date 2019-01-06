@@ -9,18 +9,20 @@ MPackerX is my own compression/decompression algorythm for small bitmap images. 
 Features of the app:
 - open and decompresses .pkx (MPackerX compressed) files
 - open any binary file (max 64KB is loaded)
-- compress, with various compression settings
+- compress, with customizable compression settings
 - visualize loaded/compressed data
-- Import and Export hexdumps (easy cooperation with source files)
-- Reorder data (helps organize byte order for target platform, or improve compression ratio)
+- Import and Export hexdumps in multiple formats (easy cooperation with source files)
+- Reorder data (help organize byte order for target platform, or improve compression ratio)
 - Crop data (to allow opening container files like .pbm, or reuse just a portion of the original bitmap image)
-- Append file (to join multiple graphic elements into one data file)
+- Append file (to join multiple graphic elements into one file)
 
 The source files was made using Xcode 10 and swift 4.2 language, the complied executable runs on Mac OS X 10.9 or later versions.
 
 Future ideas for developing:
 - Opening image files and convert them to bitmap image
 - colored bitmap image support
+- batch compress/decompress files
+- selectable preview container size (16x2048, 32x1024, 64x512, 128x256)
 
 MPackerX enhancements:
 - support larger files than 64KB
