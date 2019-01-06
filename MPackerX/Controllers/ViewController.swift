@@ -592,8 +592,7 @@ class ViewController: NSViewController {
 				}
 				updateBitmapDisplay()
 				
-				// Add successfully opened file to the recent files menu
-				NSDocumentController.shared.noteNewRecentDocumentURL(URL(fileURLWithPath: file))
+				addRecentDoc( file: file )
 			}
 			updateUI()
 			
@@ -610,10 +609,16 @@ class ViewController: NSViewController {
 		if file.count>0 {
 			if mpackerxapp.appendFile(file: file) == 0 {
 				updateUI()
+				updateBitmapDisplay()
+				addRecentDoc( file: file )
 			}
 			return 0
 		}
 		return -1
+	}
+	func addRecentDoc( file: String ) {
+		// Add successfully opened file to the recent files menu
+		NSDocumentController.shared.noteNewRecentDocumentURL(URL(fileURLWithPath: file))
 	}
 	func openDialog( title:String )->String {
         let dialog = NSOpenPanel()
