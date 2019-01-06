@@ -26,3 +26,6 @@ MPackerX enhancements:
 - support larger files than 64KB
 - automatically find the best compression setting
 
+No sense ideas:
+- Making GUI app for Mac OS 7 in 68k Assembly
+- Making C64 version (decompression tool in 6510 Assembly is already done)
