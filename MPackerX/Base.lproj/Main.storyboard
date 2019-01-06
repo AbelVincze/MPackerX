@@ -84,6 +84,12 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
+                                        <menuItem title="Append File..." enabled="NO" id="Q5R-wL-cQZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="fileAppendMenuItemClicked:" target="Ady-hI-5gd" id="5Qx-DQ-1Or"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
                                         <menuItem title="Save As…" enabled="NO" keyEquivalent="S" id="Bw7-FT-i3A">
                                             <connections>
@@ -286,6 +292,7 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MPackerX">
                     <connections>
+                        <outlet property="appendMenuItem" destination="Q5R-wL-cQZ" id="KbA-ls-F8N"/>
                         <outlet property="autoRepackMenuItem" destination="gVA-U4-sdL" id="fTu-2V-eIt"/>
                         <outlet property="autoUnpackMenuItem" destination="Ruw-6m-B2m" id="13E-4B-5e7"/>
                         <outlet property="autoUpdateSettingsMenuItem" destination="Xsp-sI-RrR" id="l9X-bu-r8K"/>

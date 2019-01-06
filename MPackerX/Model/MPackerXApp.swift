@@ -114,6 +114,47 @@ class MPackerXApp {
         
         return 0
     }
+	func appendFile( file:String )->Int {
+		// load binary to odata
+		print( "append \( file )" )
+		
+		var buf:[UInt8] = [UInt8](repeating: 0, count: 65536)           // temporary buffer to load data to
+		var buf2:[UInt8] = [UInt8](repeating: 0, count: 65536)           // temporary buffer to load data to
+		
+		let maxl = 65536-odata.count
+		
+		if let stream:InputStream = InputStream(fileAtPath: file) {
+			stream.open()
+			let len = stream.read(&buf, maxLength: maxl)           // load data from file
+			stream.close()
+			if len <= 0 {
+				print("0 byte long file")
+				return -2
+			}
+			print("Appended \( len )")
+			buf2 = odata + [UInt8](buf[..<len])
+			odata = buf2// assign loaded data to our odata array
+			print("Final length \(odata.count)")
+			
+			haveodata = true
+			odataisnotpacked = false    // nem tudjuk meg....
+			odatatype = LOADEDDATA
+			setH()
+			//let filename = (file as NSString).lastPathComponent
+			loadedInfo = "Appended \( odata.count ) bytes binary file\n\( lastFileName )"
+			
+			//lastFileName = file 	// store filename for later use
+			print("odata \( odata.count )")
+			
+		} else {
+			print( "file not found: \( file )" )
+			return -1
+		}
+		
+		
+		
+		return 0
+	}
     func saveOdata( file:String )->Int {
         return saveData( file: file, data: odata )
     }

@@ -130,10 +130,13 @@ class ViewController: NSViewController {
     @IBAction func fileNewMenuItemClicked(_ sender: Any ) {
         resetApp()
     }
-    @IBAction func fileOpenMenuItemClicked(_ sender: Any ) {
-        openBinary()
-    }
-    @IBAction func fileSaveAsMenuItemClicked(_ sender: Any ) {
+	@IBAction func fileOpenMenuItemClicked(_ sender: Any ) {
+		openBinary()
+	}
+	@IBAction func fileAppendMenuItemClicked(_ sender: Any ) {
+		appendBinary()
+	}
+	@IBAction func fileSaveAsMenuItemClicked(_ sender: Any ) {
         saveAs()
     }
     @IBAction func fileImportExportMenuItemClicked(_ sender: Any ) {
@@ -375,6 +378,7 @@ class ViewController: NSViewController {
         appdelegate?.newMenuItem.isEnabled      = !isNew && mainf
         appdelegate?.openMenuItem.isEnabled     = true && mainf
 		appdelegate?.openRecentMenuItem.isEnabled = true && mainf
+		appdelegate?.appendMenuItem.isEnabled	= !isNew && mainf
 		appdelegate?.saveAsMenuItem.isEnabled   = !isNew && mainf
 		appdelegate?.importExportMenuItem.isEnabled   = true	//!exportWindowOpened
 		appdelegate?.selectAllMenuItem.isEnabled = exportWindowOpened
@@ -571,14 +575,14 @@ class ViewController: NSViewController {
     }
     func openBinary()->Int {
         
-        let file:String = openDialog()
+		let file:String = openDialog( title: "Open Binary" )
         return openFile( file: file )
     }
-    func openFile( file:String )->Int {
-        if file.count>0 {
-            if mpackerxapp.loadFile(file: file)==0 {
-                print("successfully loaded, try to unpack")
-                //if autodecompress -> try to autoDecompress
+	func openFile( file:String )->Int {
+		if file.count>0 {
+			if mpackerxapp.loadFile(file: file)==0 {
+				print("successfully loaded, try to unpack")
+				//if autodecompress -> try to autoDecompress
 				displayMode = LOADEDDISPLAY
 				
 				if AUTOUNPACK {
@@ -586,21 +590,35 @@ class ViewController: NSViewController {
 						displayMode = UNPACKEDDISPLAY
 					}
 				}
-                updateBitmapDisplay()
+				updateBitmapDisplay()
 				
 				// Add successfully opened file to the recent files menu
 				NSDocumentController.shared.noteNewRecentDocumentURL(URL(fileURLWithPath: file))
 			}
 			updateUI()
-
+			
 			return 0
-        }
-        return -1
-    }
-    func openDialog()->String {
+		}
+		return -1
+	}
+	func appendBinary()->Int {
+		
+		let file:String = openDialog( title: "Append Binary" )
+		return appendFile( file: file )
+	}
+	func appendFile( file:String )->Int {
+		if file.count>0 {
+			if mpackerxapp.appendFile(file: file) == 0 {
+				updateUI()
+			}
+			return 0
+		}
+		return -1
+	}
+	func openDialog( title:String )->String {
         let dialog = NSOpenPanel()
         
-        dialog.title                   = "Choose a file"
+        dialog.title                   = title
         dialog.showsResizeIndicator    = true
         dialog.showsHiddenFiles        = false
         dialog.canChooseDirectories    = false
@@ -921,6 +939,7 @@ class ViewController: NSViewController {
 		return hex
 	}
 	func importFromText( text:String ) {
+		if reorderWindowOpened || cropWindowOpened { return }
 		if mpackerxapp.importFile(text: text)==0 {
 			displayMode = IMPORTEDDISPLAY
 			updateUI()
