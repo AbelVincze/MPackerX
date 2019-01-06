@@ -230,7 +230,7 @@ class MPackerXApp {
 		setH()
 		odatatype = LOADEDDATA
 		let filename = (lastFileName as NSString).lastPathComponent
-		loadedInfo = "Reordered \( odata.count ) bytes binary file\n\( filename )"
+		loadedInfo = "Edited \( odata.count ) bytes binary file\n\( filename )"
 	}
 	
     func packData() {

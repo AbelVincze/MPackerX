@@ -82,7 +82,9 @@ class ViewController: NSViewController {
 	var exportViewController:ExportViewController!
 	var reorderWindowController:NSWindowController!
 	var reorderViewController:ReorderViewController!
-	
+	var cropWindowController:NSWindowController!
+	var cropViewController:CropViewController!
+
     // ------------------------------------------------------------------------------------------------ OVERRIDES
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +96,7 @@ class ViewController: NSViewController {
             documentView.scroll(NSPoint(x: 0, y: documentView.bounds.size.height))
         }
         // disable interpolation for our bitmap view to get clear pixel edged!
-        bitmapView.imageScaling = NSImageScaling.scaleNone
+        //bitmapView.imageScaling = NSImageScaling.scaleNone
         // access our delegate!
         appdelegate = NSApplication.shared.delegate as? AppDelegate
         appdelegate?.setViewController(vc: self)
@@ -153,7 +155,7 @@ class ViewController: NSViewController {
         openReorderWindow()
     }
     @IBAction func dataCropMenuItemClicked(_ sender: Any ) {
-        print("dataCropMenuItemClicked")
+        openCropWindow()
     }
     // ---------------------------------------------------------------    
     @IBAction func packMenuItemClicked(_ sender: Any ) {
@@ -346,6 +348,7 @@ class ViewController: NSViewController {
 	
 	var exportWindowOpened:Bool = false
 	var reorderWindowOpened:Bool = false
+	var cropWindowOpened:Bool = false
     //var BW:Int = 16
     
     func updateUI() {
@@ -367,10 +370,11 @@ class ViewController: NSViewController {
         let isNew = !mpackerxapp.haveodata
         let packed = displayMode == PACKEDDISPLAY
 		let canUnpack = !isNew && !mpackerxapp.odataisnotpacked && !packed
-		let mainf = !reorderWindowOpened
+		let mainf = !reorderWindowOpened && !cropWindowOpened
 		
         appdelegate?.newMenuItem.isEnabled      = !isNew && mainf
         appdelegate?.openMenuItem.isEnabled     = true && mainf
+		appdelegate?.openRecentMenuItem.isEnabled = true && mainf
 		appdelegate?.saveAsMenuItem.isEnabled   = !isNew && mainf
 		appdelegate?.importExportMenuItem.isEnabled   = true	//!exportWindowOpened
 		appdelegate?.selectAllMenuItem.isEnabled = exportWindowOpened
@@ -480,7 +484,7 @@ class ViewController: NSViewController {
         if exportWindowOpened { refreshExportWindowContent() }
         
     }
-	func applyReorderedData( data:[UInt8], bw:Int ) {
+	func applyEditedData( data:[UInt8], bw:Int ) {
 		mpackerxapp.setData( data: data, bw: bw)
 		displayMode = LOADEDDISPLAY
 	}
@@ -724,7 +728,7 @@ class ViewController: NSViewController {
 	
 	func openReorderWindow() {
 		if reorderWindowOpened { return }
-
+		
 		let storyboard = NSStoryboard(name: "Main", bundle: nil)
 		reorderWindowController = storyboard.instantiateController(withIdentifier: "ReorderWindowController") as? NSWindowController
 		
@@ -735,9 +739,7 @@ class ViewController: NSViewController {
 			reorderViewController = reorderWindowController.contentViewController as? ReorderViewController
 			reorderWindowController.showWindow(self)
 			reorderViewController.mainViewController = self
-			
-			//reorderWindowController.windowFrameAutosaveName = NSWindow.FrameAutosaveName( "MPackerXReorderDataWindow")
-			//reorderWindowController.
+
 			
 			reorderViewController.initReorder(data: mpackerxapp.odata,
 											  bw: mpackerxapp.msettings.BW,
@@ -746,9 +748,32 @@ class ViewController: NSViewController {
 			
 			updateUI()
 		}
-
+		
 	}
-	
+	func openCropWindow() {
+		if cropWindowOpened { return }
+		
+		let storyboard = NSStoryboard(name: "Main", bundle: nil)
+		cropWindowController = storyboard.instantiateController(withIdentifier: "CropWindowController") as? NSWindowController
+		
+		if cropWindowController!.window != nil {
+			
+			cropWindowOpened = true
+			
+			cropViewController = cropWindowController.contentViewController as? CropViewController
+			cropWindowController.showWindow(self)
+			cropViewController.mainViewController = self
+
+			cropViewController.initCrop(data: mpackerxapp.odata,
+										bw: mpackerxapp.msettings.BW,
+										h: mpackerxapp.msettings.H,
+										len: mpackerxapp.odata.count)
+			
+			updateUI()
+		}
+		
+	}
+
 	func openExportWindow() {
 		if exportWindowOpened { return }
 		

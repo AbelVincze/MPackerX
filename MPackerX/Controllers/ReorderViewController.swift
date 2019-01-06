@@ -1,5 +1,5 @@
 //
-//  ExportViewController.swift
+//  ReorderViewController.swift
 //  MPackerX
 //
 //  Created by Macc on 18/12/29.
@@ -112,7 +112,7 @@ class ReorderViewController: NSViewController {
 	}
 	@IBAction func applyButtonClicked(_ sender: Any) {
 		reorder()
-		mainViewController.applyReorderedData( data: tdata, bw: HT*BBW )
+		mainViewController.applyEditedData( data: tdata, bw: HT*BBW )
 		self.view.window?.windowController?.close()
 	}
 	

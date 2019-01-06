@@ -15,7 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var newMenuItem: NSMenuItem!
     @IBOutlet weak var openMenuItem: NSMenuItem!
-    @IBOutlet weak var clearRecentMenuItem: NSMenuItem!
+	@IBOutlet weak var openRecentMenuItem: NSMenuItem!
+	@IBOutlet weak var clearRecentMenuItem: NSMenuItem!
     @IBOutlet weak var saveAsMenuItem: NSMenuItem!
     @IBOutlet weak var importExportMenuItem: NSMenuItem!
     @IBOutlet weak var pageSetupMenuItem: NSMenuItem!
