@@ -22,7 +22,7 @@ Future ideas for developing:
 - Opening image files and convert them to bitmap image
 - colored bitmap image support
 - batch compress/decompress files
-- selectable preview container size (16x2048, 32x1024, 64x512, 128x256)
+- selectable preview container size (32x2048, 64x1024, 128x512, 256x256)
 
 MPackerX enhancements:
 - support larger files than 64KB
