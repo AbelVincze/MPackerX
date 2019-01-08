@@ -214,18 +214,20 @@ class MPackerXApp {
 			
 			// ami maradt az csak hex szam lehet, tehat, ha olyan karakter talalunk ami nem hex, akkor hiba
 			print( tdata )
-			let remains = tdata.count
+			var remains = tdata.count
 			
 			lastGoodLength = length
 			index = 0
-			while index<remains {
+			while 0<remains {
 				
 				if remains>=2 {
 					byte = getHexValue(chr: tdata[index])*16+getHexValue(chr: tdata[index+1])
 					index += 2
+					remains -= 2
 				} else {
 					byte = getHexValue(chr: tdata[index])
 					index += 1
+					remains -= 1
 				}
 				if byte<0 {
 					length = lastGoodLength
