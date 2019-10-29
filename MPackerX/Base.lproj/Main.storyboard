@@ -939,8 +939,8 @@
         <scene sceneID="A8P-xs-8oZ">
             <objects>
                 <windowController storyboardIdentifier="ExportWindowController" showSeguePresentationStyle="single" id="P3P-ed-w2j" sceneMemberID="viewController">
-                    <window key="window" title="Import/Export Hexdump" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="MPackerXExportHexdumpWindow" animationBehavior="default" titlebarAppearsTransparent="YES" id="zg6-Mo-nLi" customClass="ExportPanel" customModule="MPackerX" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
+                    <window key="window" title="Import/Export Hexdump" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="MPackerXExportHexdumpWindow" animationBehavior="default" titlebarAppearsTransparent="YES" id="zg6-Mo-nLi" customClass="ExportPanel" customModule="MPackerX" customModuleProvider="target">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="133" y="240" width="400" height="480"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
