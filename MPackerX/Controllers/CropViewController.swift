@@ -281,7 +281,7 @@ class CropViewController: NSViewController {
 		tdata = [UInt8](repeating: 0, count: maxLen )
 		var tI = 0
 		
-		for L:Int in 0..<maxLine {
+		for _:Int in 0..<maxLine {
 			
 			for i:Int in 0..<NRB {
 				

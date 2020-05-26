@@ -448,7 +448,7 @@ class ViewController: NSViewController {
         print("updateBitmapDisplay")
         
         let memory = UnsafeMutablePointer<UInt8>.allocate(capacity: 65536)
-        let pixels = UnsafePointer<UInt8>.init( memory )
+		//let pixels = UnsafePointer<UInt8>. .init( memory )
         
         for i:Int in 0..<65536 { memory[i] = 0x55 }
         
@@ -483,7 +483,7 @@ class ViewController: NSViewController {
         
 
         let size:NSSize = NSSize( width: 256, height: 2048 )
-        bitmapView.image = imageFromPixels(size: size, pixels: pixels , width: Int(256), height: Int(2048) )
+        bitmapView.image = imageFromPixels(size: size, pixels: memory , width: Int(256), height: Int(2048) )
         
         if exportWindowOpened { refreshExportWindowContent() }
         
@@ -496,7 +496,7 @@ class ViewController: NSViewController {
 		print("updateBitmapDisplay")
 		
 		let memory = UnsafeMutablePointer<UInt8>.allocate(capacity: 65536)
-		let pixels = UnsafePointer<UInt8>.init( memory )
+		//let pixels = UnsafePointer<UInt8>.init( memory )
 		
 		for i:Int in 0..<65536 { memory[i] = 0x55 }
 		
@@ -517,7 +517,7 @@ class ViewController: NSViewController {
 		}
 		
 		let size:NSSize = NSSize( width: 256, height: 2048 )
-		bitmapView.image = imageFromPixels(size: size, pixels: pixels , width: Int(256), height: Int(2048) )
+		bitmapView.image = imageFromPixels(size: size, pixels: memory , width: Int(256), height: Int(2048) )
 		
 		//if exportWindowOpened { refreshExportWindowContent() }
 		
@@ -851,7 +851,7 @@ class ViewController: NSViewController {
 		var prefix = ""
 		var numprefix = ""
 		var spacer = " "
-		var max = 16
+		let max = 16
 		var codepostfix = ""
 		var lastspacer = false
 		var havecomment = false

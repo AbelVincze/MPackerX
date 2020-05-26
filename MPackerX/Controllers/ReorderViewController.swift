@@ -243,7 +243,7 @@ var tdata:[UInt8]	= [UInt8]()
 		
 		// most hogy tudjuk mekkora tetuletrol olvasunk, es mekkora helyre irunk, deritsuk ki osszesen hany tile-unk lesz
 		
-		var crop:Bool = true	// ez azt jelenti, hogy a nem egesz tile-ok torlodnek
+		let crop:Bool = true	// ez azt jelenti, hogy a nem egesz tile-ok torlodnek
 		let PAD:UInt8 = 0x00	// ha false, akkor meg paddingot kap
 		
 		let maxsHT:Int = crop ? Int(floor(Double(maxsX)/Double(BBW))) :
@@ -251,7 +251,7 @@ var tdata:[UInt8]	= [UInt8]()
 		let maxsVT:Int = crop ? Int(floor(Double(maxsY)/Double(BH))) :
 								Int(ceil(Double(maxsY)/Double(BH)))
 		
-		var maxTiles:Int = maxsHT*maxsVT
+		let maxTiles:Int = maxsHT*maxsVT
 		
 		if TA==0 {
 			// horizontal target

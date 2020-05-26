@@ -186,7 +186,7 @@ class MPackerXApp {
 	
 	func importFile( text:String )->Int {
         // import data to odata
-		var words = text.split(separators: ",! \n\t\r" )
+		let words = text.split(separators: ",! \n\t\r" )
 		print( words.count )
 		//print( words )
 		
@@ -195,7 +195,7 @@ class MPackerXApp {
 		var length:Int = 0
 		var lastGoodLength:Int
 
-		var error:Bool = false
+		//var error:Bool = false
 
 		var index:Int
 		var byte:Int

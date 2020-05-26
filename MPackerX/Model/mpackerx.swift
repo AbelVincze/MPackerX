@@ -293,7 +293,7 @@ class MPackerX {
             // start checking with the largest single variation
             ubits[d] = UInt8(mbit)
             //checkresult result;
-            var result = getsaves( SDATA: SDATA )
+			let result = getsaves( SDATA: SDATA )
             //cout << +result.pattern[0] << "\n";
             if result.saved>maxsaves || (result.saved==maxsaves && maxvs>d) {
                 maxsaves = result.saved
@@ -829,7 +829,7 @@ class MPackerX {
         
         var bout:Int = 0
         var isStream:Bool = true
-        var next:Bool = false
+        //var next:Bool = false
         
         var stcnt:Int = 0
         var b:UInt8
@@ -842,7 +842,7 @@ class MPackerX {
         while bout<expsize && error==0 {
             if isStream {
                 stcnt = pulldatabits( bitdepths: CNTbitdepths, l: CNTbitdepthscount );
-                for i:Int in 0...stcnt {
+				for _:Int in 0...stcnt {
                     if USELOOKUP {
                         
                         b = rlookup[ pulldatabits( bitdepths: LIbitdepths, l: LIbitdepthscount )&0xFF ]
@@ -869,7 +869,7 @@ class MPackerX {
 				if L>maxc { maxc = L }
 				
                 neg = NEGCHECK ? pullbit() : 0
-                for i:Int in 0..<L {
+				for _:Int in 0..<L {
                     if bout>=expsize { bout = expsize-1; error += 1 }
                     if src<0 { src = 0; error += 1 }
                     if src>=expsize { src = expsize-1; error += 1 }
