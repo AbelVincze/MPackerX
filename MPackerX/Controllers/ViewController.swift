@@ -57,8 +57,8 @@ class DragView:NSView {
             else { return false }
         
         let vc = self.window?.contentViewController as! ViewController
-        vc.openFile( file: path )
-        return true
+        
+		return vc.openFile( file: path )==0;
     }
 
 }
@@ -854,24 +854,24 @@ class ViewController: NSViewController {
 		let max = 16
 		var codepostfix = ""
 		var lastspacer = false
-		var havecomment = false
-		var commentprefix = ""
+		//var havecomment = false
+		//var commentprefix = ""
 		
 		switch mode {
 		case 0:
 			prefix = "\t!byte "
 			numprefix = "$"
 			spacer = ", "
-			havecomment = true
-			commentprefix = "  ;"
+			//havecomment = true
+			//commentprefix = "  ;"
 			//max = 8
 			break
 		case 1:
 			prefix = "\tdc.b "
 			numprefix = "$"
 			spacer = ", "
-			havecomment = true
-			commentprefix = "  ;"
+			//havecomment = true
+			//commentprefix = "  ;"
 			//max = 8
 			break
 		case 2:
@@ -881,8 +881,8 @@ class ViewController: NSViewController {
 			spacer = ", "
 			lastspacer = true
 			codepostfix = "\n};"
-			havecomment = true
-			commentprefix = "  //"
+			//havecomment = true
+			//commentprefix = "  //"
 			//max = 8
 			break
 		case 3:
@@ -892,8 +892,8 @@ class ViewController: NSViewController {
 			spacer = ", "
 			lastspacer = true
 			codepostfix = "\n]"
-			havecomment = true
-			commentprefix = "  //"
+			//havecomment = true
+			//commentprefix = "  //"
 			//max = 8
 			break
 		case 4:

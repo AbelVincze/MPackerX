@@ -191,7 +191,7 @@ class MPackerX {
             prevend = T+repeats[r].L;
 			
 			if repeats[r].L>maxc { maxc = repeats[r].L }
-			var dist = T-repeats[r].SRC
+			let dist = T-repeats[r].SRC
 			if dist>maxd { maxd = dist }
 
             r += 1
@@ -217,7 +217,7 @@ class MPackerX {
         var sdatacount:Int = 0
         
 
-        var bitvars:UInt8 = 0
+        //var bitvars:UInt8 = 0
         var len:Int = 0
         var MAX:Int = 0
         var maxsaves:Int = 0
@@ -225,7 +225,7 @@ class MPackerX {
         var checks:Int = 0
         var maxpatt:[UInt8] = []    //[UInt8](repeating: 0, count: maxpatterns)
         var ubits:[UInt8] = []      //[UInt8](repeating: 0, count: maxpatterns)
-        var maxvars:Int = 5
+        let maxvars:Int = 5
         var LIrefs:Int = 0
 
         var pattern:[UInt8] = []
@@ -233,7 +233,7 @@ class MPackerX {
         func dotest( SDATA:[testdata], sdatacount:Int, max:Int )->[UInt8] {
             
             //testvars vars = (testvars){ 1, (int)sdatacount, MAX, 0, 0, 0 };
-            bitvars = 1
+            //bitvars = 1
             len = sdatacount
             MAX = max
             maxsaves = 0
@@ -705,14 +705,14 @@ class MPackerX {
 		var maxc:Int = 0
 		
         
-        var filesize = pdata.count
+        let filesize = pdata.count
         if filesize < 8 { return pdata }
         
         var expsize:Int = 0
         var bin:Int = 0
         
         var error:Int = 0  // Script is fail proof, but is forced to generate data..
-        var warn:Bool = false
+        //var warn:Bool = false
         
         
         
