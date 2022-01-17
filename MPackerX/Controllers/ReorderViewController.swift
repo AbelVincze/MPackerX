@@ -259,7 +259,7 @@ var tdata:[UInt8]	= [UInt8]()
 				setHT( value: maxTiles )
 				setVT( value: 1 )
 			} else {
-				setVT( value: Int(ceil(Double(maxTiles)/Double(HT))) )
+				setVT( value: Int(floor(Double(maxTiles)/Double(HT))) )
 			}
 			
 		} else {
@@ -268,7 +268,7 @@ var tdata:[UInt8]	= [UInt8]()
 				setVT( value: maxTiles )
 				setHT( value: 1 )
 			} else {
-				setHT( value: Int(ceil(Double(maxTiles)/Double(VT))) )
+				setHT( value: Int(floor(Double(maxTiles)/Double(VT))) )
 			}
 
 		}
